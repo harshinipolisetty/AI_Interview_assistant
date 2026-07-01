@@ -293,7 +293,7 @@ function stopRecording() {
 
 // ========== API FUNCTIONS ==========
 
-const startInterviewApiUrl = "http://127.0.0.1:5000/start-interview";
+const startInterviewApiUrl = "http://127.0.0.1:5000/start_interview";
 
 
 async function startInterview() {
@@ -417,8 +417,8 @@ async function getFeedback() {
         
         const data = await response.json();
         
-        if (data.success) {
-            displayFeedback(data.feedback);
+        if (data.Success) {
+            displayFeedback(data.Feedback);
         }
     } catch (error) {
         getFeedbackBtn.textContent = "Error - Retry";

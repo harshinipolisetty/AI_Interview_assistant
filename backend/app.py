@@ -12,6 +12,7 @@ import assemblyai as aai
 load_dotenv()
 app = Flask(__name__)
 CORS(app, expose_headers=['X-Question-Number'])
+
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 MURF_API_KEY = os.getenv("MURF_API_KEY")
 ASSEMBLY_AI_API_KEY = os.getenv("ASSEMBLY_AI_API_KEY")
@@ -24,7 +25,7 @@ model = init_chat_model(
 checkpointer = InMemorySaver()
 agent = create_agent(
     model = model,
-    tools = [...],
+    tools = [],
     checkpointer=checkpointer
 
 )
@@ -92,7 +93,7 @@ def stream_audio(text):
 def start_interview():
     global current_subject,question_count,checkpointer,agent
     data = request.json
-    current_subject = data.get("subject","python"),
+    current_subject = data.get("subject","python")
     question_count = 1
 
     checkpointer = InMemorySaver()
@@ -137,7 +138,7 @@ def submit_answer():
         "messages": [
         {
             "role": "user", 
-            "content": {answer}
+            "content": answer
         }
         ]
     }, config=config)
@@ -185,7 +186,7 @@ def get_feedback():
     if cleaned.startswith("json"):
         cleaned = cleaned[4:].strip()
     feedback=json.loads(cleaned)
-    return jsonify({"Success" :True,"Feefback":feedback})
+    return jsonify({"Success" :True,"Feedback":feedback})
 
 
 
